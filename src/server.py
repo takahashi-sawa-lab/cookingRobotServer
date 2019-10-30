@@ -4,10 +4,11 @@ import control
 app = Flask(__name__)
 
 class Order():
-    def __init__(self, target, action, howto):
+    def __init__(self, target="", action="", how="", to=""):
         self.target = target
         self.action = action
-        self.howto = howto
+        self.how = how
+        self.to = to
 
 
 @app.route('/')
@@ -21,8 +22,9 @@ def cook():
         preorder = request.get_json()
         target = preorder['target']
         action = preorder['action']
-        howto = preorder['howto']
-        order = Order(target, action, howto)
+        how = preorder['how']
+        to = preorder['to']
+        order = Order(target, action, how, to)
         control.cook(order)
         return "finish"
     else:
