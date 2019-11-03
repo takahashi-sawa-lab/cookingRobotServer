@@ -1,6 +1,7 @@
-export PATH=$(PWD)/vendor
-export PYTHONPATH=$(PWD)/vendor
 SHELL = /bin/bash
+export PATH+=":$(PWD)/vendor"
+export PYTHONPATH=":$(PWD)/vendor"
+
 run_server:
 	@python src/server.py
 

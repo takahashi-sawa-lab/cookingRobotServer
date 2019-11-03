@@ -1,1 +1,1 @@
-web: pipenv run make run_server
+web: pipenv run gunicorn src.server:app
