@@ -1,7 +1,7 @@
 export PATH=$(PWD)/vendor
 export PYTHONPATH=$(PWD)/vendor
 SHELL = /bin/bash
-run:
+run_server:
 	@python src/server.py
 
 test:

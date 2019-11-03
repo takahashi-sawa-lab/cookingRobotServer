@@ -1,5 +1,5 @@
+from collections import deque
 from flask import Flask, request
-import control
 
 app = Flask(__name__)
 
@@ -10,14 +10,14 @@ class Order():
         self.how = how
         self.to = to
 
+orderQueue = deque()
 
 @app.route('/')
-def usage():
-    res = control.usage()
-    return res
+def show_usage():
+    return "Hello World. TODO: show USAGE"
 
-@app.route('/cook', methods=['POST'])
-def cook():
+@app.route('/order/input', methods=['POST'])
+def input_order():
     if request.method == 'POST' and request.headers['Content-Type'] == 'application/json':
         preorder = request.get_json()
         target = preorder['target']
@@ -25,11 +25,19 @@ def cook():
         how = preorder['how']
         to = preorder['to']
         order = Order(target, action, how, to)
-        control.cook(order)
-        return "finish"
+        orderQueue.append(order)
+        return "finish input order"
     else:
         err = "error"
         return err
 
+@app.route('/order/output', methods=['GET'])
+def output_order():
+    if orderQueue:
+        latestOrder = orderQueue.popleft()
+        return "latest order output"
+    else:
+        return "order is empty"
+
 if __name__ == '__main__':
-    app.run(debug=True, host='0.0.0.0', port=9999)
+    app.run(debug=True)
