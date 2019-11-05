@@ -9,17 +9,21 @@ This server control robot arm with http request
 ## installing
  ```
  pipenv install
- pipenv shell
  ```
 ## execute server
  ```
- make
- ```
- or
- ```
- make run
+ make run_server
  ```
 
+## execute robotController
+### executing server on heroku
+ ```
+ make run_robot
+ ```
+### executing server on local
+```
+make trun_robot
+```
 ## execute test
  ```
  make test
