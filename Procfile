@@ -1,1 +1,1 @@
-web: pipenv run gunicorn src.server:app
+web: pipenv run gunicorn --chdir src server:app
