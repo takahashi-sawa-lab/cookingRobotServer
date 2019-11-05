@@ -1,14 +1,8 @@
 from collections import deque
 from flask import Flask, request
+import inter_objects
 
 app = Flask(__name__)
-
-class Order():
-    def __init__(self, target="", action="", how="", to=""):
-        self.target = target
-        self.action = action
-        self.how = how
-        self.to = to
 
 orderQueue = deque()
 
@@ -24,7 +18,7 @@ def input_order():
         action = preorder['action']
         how = preorder['how']
         to = preorder['to']
-        order = Order(target, action, how, to)
+        order = inter_objects.Order(target, action, how, to)
         orderQueue.append(order)
         return "finish input order"
     else:
