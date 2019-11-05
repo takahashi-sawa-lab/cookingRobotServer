@@ -1,9 +1,18 @@
-SHELL = /bin/bash
-export PATH+=":$(PWD)/vendor"
-export PYTHONPATH=":$(PWD)/vendor"
+SHELL :=/bin/bash
+PATH  :=$(PWD)/vendor:$(PATH)
+PYTHONPATH :=$(PWD)/vendor:$(PYTHONPATH)
+
+usage:
+	@echo "usage"
 
 run_server:
-	@python src/server.py
+	@pipenv run python src/server.py
+
+run_robot:
+	@pipenv run python src/robot.py
+
+trun_robot:
+	@pipenv run python src/robot.py -t
 
 test:
-	@python tests/request.py
+	@pipenv run python tests/request.py
