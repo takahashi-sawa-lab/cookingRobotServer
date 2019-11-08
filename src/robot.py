@@ -1,5 +1,5 @@
 import sys
-import time
+from time import sleep
 import argparse
 import json
 import requests
@@ -12,14 +12,17 @@ orderOutput_url = "https://cookingrobotserver.herokuapps.com/order/output"
 orderOutput_testurl = "http://localhost:5000/order/output"
 
 def main():
-    try:
-        if args.test:
-            response = requests.get(orderOutput_testurl)
-        else:
-            response = requests.get(orderOutput_url)
-    except Exception as e:
-        print(e)
-        sys.exit(1)
+    while True:
+        try:
+            if args.test:
+                response = requests.get(orderOutput_testurl)
+                sleep(5)
+            else:
+                response = requests.get(orderOutput_url)
+                sleep(5)
+        except Exception as e:
+            print(e)
+            sys.exit(1)
 
 
 
